@@ -1,0 +1,110 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+<head>    
+</head>
+<body>
+    <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+    <!-- bradcam_area  -->
+    <div class="bradcam_area breadcam_bg_2">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text text-center">
+                        <h3>Confirmed Bookings</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ bradcam_area  -->
+  <!-- ================ contact section start ================= -->
+  <section class="contact-section section_padding">
+      <div class="row" align="center">
+        <div class="container">                 
+        <div class="col-12">
+          <h2 class="contact-title">Confirmed Bookings</h2>
+        </div>                   
+
+    <div class="site-section">
+      <div class="container">
+        <div class="row mb-5">
+          <form class="col-md-12" id="form" method="post" action="#">
+            {% csrf_token %}
+            <div class="site-blocks-table">
+              {% if booking %}
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th class="product-thumbnail">Image</th>
+                    <th class="artist_name">Artist Name</th>
+                    <th class="artist_price">Artist Fee</th>
+                    <th class="event_name">Event Name</th>
+                    <th class="event_date">Event Date</th>
+                    <th class="booking_date">Booking Date</th>
+                    <th class="status">Status</th>  
+                    <th class="payment_status">Payment Status</th>                  
+                  </tr>
+                </thead>
+                
+                <tbody>                 
+
+                  {% for i in booking %}
+                    {% if i.payment_status == "paid" %}                  
+                  <tr>
+                    <td class="product-thumbnail">
+                      <img src="{{i.profile.artist_image.url}}" alt="Image" class="img-fluid" style="height: 180px; width: 180px;">
+                    </td>
+                    <td class="artist_name">
+                      <h2 class="h5 text-black">{{i.profile.artist_name}}</h2>
+                    </td>
+                    <td class="artist_price">
+                      <h2 class="h5 text-black">{{i.profile.artist_price}}</h2>
+                    </td>
+                    <td class="event_name">
+                      <h2 class="h5 text-black">{{i.event_name}}</h2>
+                    </td>
+                    <td class="event_date">
+                      <h2 class="h5 text-black">{{i.event_date}}</h2>
+                    </td>                       
+                    <td class="booking_date">
+                      <h2 class="h5 text-black">{{i.booking_date}}</h2>
+                    </td>
+                    <td class="status">
+                      <span class="lable lable-warning">{{i.status}}</span>
+                    </td>
+                    <td class="payment_status">
+                      <span class="lable lable-warning">{{i.payment_status}}</span>
+                    </td>                    
+                  </tr>
+                  {% endif %}
+                  {% endfor %}                    
+                </tbody>                
+              </table>
+              {% else %}
+                    <h2>No Confirmed Booking</h2>
+                  {% endif %}
+            </div>
+          </form>
+        </div>        
+      </div>
+    </div>                  
+          </form>
+        </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+  <!-- ================ contact section end ================= -->
+
+</body>
+
+</html>
+
+{% endblock %}

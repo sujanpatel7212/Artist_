@@ -1,0 +1,83 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+</head>
+
+<body>
+    <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+    
+
+    <!-- bradcam_area  -->
+    <div class="bradcam_area breadcam_bg_2">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text text-center">
+                        <h3>Artist Detail</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ bradcam_area  -->
+     <!-- about_area  -->
+    <div class="about_area">
+        <div class="container">
+            <div class="row align-items-center">               
+                <div class="col-xl-5 col-md-6">
+                    <div class="about_thumb">
+                        <img class="img-fluid" src="{{profile.artist_image.url}}" alt="" style="width:350px;height: 400px;">
+                    </div>
+                </div>
+                <div class="col-xl-7 col-md-6">
+                    <div class="about_info">
+                        <h3>{{profile.artist_type}} - {{profile.artist_name}}</h3>
+                        <p style="color:black">{{profile.artist_desc}}</p>
+                        <p style="color:black; ">Artist Fee: {{profile.artist_price}}</p>
+                        <p>
+                            {% if request.session.email %}
+                                <a href="{% url 'book_artist' pk=profile.pk %}" method="post">
+                                <input type="button" value="BOOK ARTIST" class="btn btn-primary">
+                                </a>
+                            {% else %}
+                                 <a href="{% url 'login' %}" class="buy-now btn btn-sm btn-primary">Login</a>                          
+                            {% endif %}
+                            
+                        </p>    
+
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <!--/ about_area  -->
+    
+
+    <!-- contact_rsvp -->
+    <div class="contact_rsvp">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="text text-center">
+                        <h3>Contact For RSVP</h3>
+                        <a class="boxed-btn3" href="contact.html">Contact Me</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ contact_rsvp -->
+
+  
+</body>
+
+</html>
+{% endblock %}

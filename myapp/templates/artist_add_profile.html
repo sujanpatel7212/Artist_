@@ -1,0 +1,175 @@
+{% extends 'artist_header.html' %}
+{% load static %}
+{% block content %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+    
+</head>
+
+<body>
+    <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+    <!-- bradcam_area  -->
+    <div class="bradcam_area breadcam_bg_2">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text text-center">
+                        <h3>Add Artist</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ bradcam_area  -->
+  <!-- ================ contact section start ================= -->
+  <section class="contact-section section_padding">
+      <div class="row" align="center">
+        <div class="container">
+          
+        
+        <div class="col-12">
+
+
+          <h2 class="contact-title">Add Artist</h2>
+        </div>
+        <div class="col-lg">
+          {% if msg %}
+            <h4 style="color:green;">{{msg}}</h4>
+          {% endif %}
+          <form class="form-contact contact_form" action="{% url 'artist_add_profile' %}" method="post" align="center" enctype="multipart/form-data">
+          {% csrf_token %}
+            <div>
+              
+              <!-- div class="col-sm">
+                <div class="form-group">
+                  
+                  <label for="fname"  class="text-black">Artist Type</label>
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="radio" name="artist_type" value="customer">Singer
+                  &nbsp;&nbsp;
+                  <input type="radio" name="artist_type" value="customer">Musician
+                  &nbsp;&nbsp;
+                  <input type="radio" name="artist_type" value="customer">Painter
+                  &nbsp;&nbsp;
+                  <input type="radio" name="artist_type" value="customer">Dancer
+                </div>
+              </div !-->
+
+              <div class="col-sm">
+                <div class="form-group">
+
+                  <label for="name">Artist Type</label>
+
+                  <select id="name" class="form-control" name="artist_type">
+                    <option value="Michael Jackson">---Select Artist Type---</option>
+                    <option value="singer">Singer</option>
+                    <option value="musician">Musician</option>
+                    <option value="painter">Painter</option>
+                    <option value="dancer">Dancer</option>
+                    
+                  </select>
+                </div>
+              </div>   
+
+              <div class="col-sm">
+                <div class="form-group">
+
+                  <label for="name">Artist Name</label>
+
+                  <select id="name" class="form-control" name="artist_name">
+                    <option value="Michael Jackson">---Select Artist---</option>
+                    <option value="Michael Jackson">Michael Jackson</option>
+                    <option value="Arijit Singh">Arijit Singh</option>
+                    <option value="Justin Bieber">Justin Bieber</option>
+                    <option value="Guru Randhava">Guru Randhava</option>
+                    <option value="Zakir Hussain">Zakir Hussain</option>
+                    <option value="Amjad Ali Khan">Amjad Ali Khan</option>
+                    <option value="Shipla Gupta">Shipla Gupta</option>
+                    <option value="Paresh Maity">Paresh Maity</option>
+                    <option value="Parbhu Deva">Parbhu Deva</option>
+                  </select>
+
+
+
+                  <!-- label for="fname"  class="text-black">Artist Name</label>
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="radio" name="artist_name" value="customer">Michael Jackson
+                  &nbsp;&nbsp;
+                  <input type="radio" name="artist_name" value="customer">Arijit Singh
+                  &nbsp;&nbsp;
+                  <input type="radio" name="artist_name" value="customer">Justin Bieber
+                  &nbsp;&nbsp;
+                  <input type="radio" name="artist_name" value="customer">Guru Randhava
+                  &nbsp;&nbsp;
+                  <input type="radio" name="artist_name" value="customer">Zakir Hussain
+                  &nbsp;&nbsp;
+                  <input type="radio" name="artist_name" value="customer">Amjad Ali Khan
+                  &nbsp;&nbsp;
+                  <input type="radio" name="artist_name" value="customer">Shipla Gupta
+                  &nbsp;&nbsp;
+                  <input type="radio" name="artist_name" value="customer">Paresh Maity                  
+                  &nbsp;&nbsp;
+                  <input type="radio" name="artist_name" value="customer"!-->
+                </div>
+              </div>        
+                                            
+                                   
+              <div class="col-12">
+                <div class="form-group">  
+                  <label for="name">Description</label>                             
+                    <textarea class="form-control w-100" name="artist_desc" id="artist_desc" cols="20" rows="9" onfocus="this.placeholder = ''" onblur="this.placeholder = 'artist_desc'" placeholder = ''></textarea>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="form-group">  
+                  <label for="name">Artist Fee</label>                             
+                    <textarea class="form-control w-100" name="artist_price" id="artist_price" cols="12" rows="1" onfocus="this.placeholder = ''" onblur="this.placeholder = 'artist_price'" placeholder = ''></textarea>
+                </div>
+              </div>
+
+              <div class="col-sm">
+                <div class="form-group">
+                 <label for="name">Artist Image</label> 
+                  <input class="form-control" name="artist_image" id="artist_image" type="file" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Image'" placeholder = 'Image'>
+                </div>
+               </div> 
+
+              
+              <!-- div class="col-12">
+                <div class="form-group">                  
+                    <textarea class="form-control w-100" name="artist_performance_desc" id="artist_performance_desc" cols="30" rows="9" onfocus="this.placeholder = ''" onblur="this.placeholder = 'artist_desc'" placeholder = 'Performance Description'></textarea>
+                </div>
+              </div>
+
+              <div class="col-sm">
+                <div class="form-group">
+                  <input class="form-control w-100" name="artist_performance_image" id="artist_performance_image" type="file" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Image'" placeholder = 'Performance Image'>
+                </div>
+              </div !-->              
+
+
+            </div>
+            <div class="form-group mt">
+              <button type="submit" class="button button-contactForm btn_4 boxed-btn">Add Profile</button>
+            </div>
+          </form>
+        </div>
+        
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+  <!-- ================ contact section end ================= -->
+
+</body>
+
+</html>
+
+{% endblock %}

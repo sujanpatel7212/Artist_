@@ -1,0 +1,149 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+<!doctype html>
+  <html class="no-js" lang="zxx">
+
+  <head>
+
+  </head>
+
+  <body>
+    <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+          <![endif]-->
+
+            <!-- bradcam_area  -->
+            <div class="bradcam_area breadcam_bg_2">
+              <div class="container">
+                <div class="row">
+                  <div class="col-xl-12">
+                    <div class="bradcam_text text-center">
+                      <h3>Sign-Up</h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--/ bradcam_area  -->
+            <!-- ================ contact section start ================= -->
+            <section class="contact-section section_padding">
+              <div class="row" align="center">
+                <div class="container">
+
+
+                  <div class="col-12">
+
+
+                    <h2 class="contact-title">Sign-up</h2>
+                  </div>
+                  <div class="col-lg">
+                    {% if msg %}
+                    <h4 style="color:green;">{{msg}}</h4>
+                    {% endif %}
+                    <form class="form-contact contact_form" action="{% url 'signup' %}" method="post" align="center">
+                      {% csrf_token %}
+                      <div>
+
+                        <div class="col-sm">
+                          <div class="form-group">
+                            <label for="fname"  class="text-black">Select User Type<span class="text-danger">*</span></label>
+                            &nbsp;&nbsp;
+                            <input type="radio" name="usertype" value="customer">Customer
+                            &nbsp;&nbsp;
+                            <input type="radio" name="usertype" value="artist">Artist
+
+                          </div>
+                        </div>
+
+                        <div class="col-sm">
+                          <div class="form-group">
+
+                            <input class="form-control" required name="fname" id="fname" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter first name'" placeholder = 'Enter first name'>
+                          </div>
+
+                        </div>
+                        <div class="col-sm">
+                          <div class="form-group">
+                            <input class="form-control" required name="lname" id="lname" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter last name'" placeholder = 'Enter last name'>
+                          </div>
+                        </div>
+
+
+                        <div class="col-sm">
+                          <div class="form-group">
+                            <input class="form-control" required name="email" id="email" type="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email Address'" placeholder = 'Enter Email Address'>
+                            <span id="email_error" style="color:red;"></span>
+                          </div>
+                        </div>
+
+
+                        <div class="col-sm">
+                          <div class="form-group">
+                            <input class="form-control" required name="mobile" id="mobile" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter mobile number'" placeholder = 'Enter Mobile Number'>
+                          </div>
+                        </div>
+
+
+                        <div class="col-12">
+                          <div class="form-group">
+
+                            <textarea class="form-control w-100" required name="address" id="address" cols="30" rows="9" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Address'" placeholder = 'Enter Address'></textarea>
+                          </div>
+                        </div>
+
+                      </div>
+                      <div class="col-sm">
+                        <div class="form-group">
+                          <input class="form-control" required name="password" id="password" type="password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Password" placeholder = 'Enter Password'>
+                        </div>
+                      </div>
+
+                      <div class="col-sm">
+                        <div class="form-group">
+                          <input class="form-control" required name="cpassword" id="cpassword" type="password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Confirm Password" placeholder = 'Enter Confirm Password'>
+                        </div>
+                      </div>
+
+
+                    </div>
+                    <div class="form-group mt">
+                      <button type="submit" class="button button-contactForm btn_4 boxed-btn">Sign up</button>
+                    </div>
+                  </form>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <script>
+          $("#email").change(function(){
+            var email=$(this).val();
+
+            $.ajax({
+              url: '/ajax/validate_email/',
+              data: {
+                'email': email
+              },
+              dataType: 'json',
+              success: function (data) {
+                if (data.is_taken) {
+                  /*document.getElementById("email").style.border="5px solid red";*/
+                  document.getElementById("email_error").innerHTML="This Email ID Already Registered"
+                }else{
+                  /*document.getElementById("email").style.border="5px solid green";*/
+                }
+              }
+            });
+          });
+
+        </script>
+      </section>
+      <!-- ================ contact section end ================= -->
+
+    </body>
+
+    </html>
+
+    {% endblock %}

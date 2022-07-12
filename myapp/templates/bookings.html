@@ -1,0 +1,114 @@
+{% extends 'artist_header.html' %}
+{% load static %}
+{% block content %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+<head>    
+</head>
+<body>
+    <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+    <!-- bradcam_area  -->
+    <div class="bradcam_area breadcam_bg_2">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text text-center">
+                        <h3>All Bookings</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ bradcam_area  -->
+  <!-- ================ contact section start ================= -->
+  <section class="contact-section section_padding">
+      <div class="row" align="center">
+        <div class="container">                 
+        <div class="col-12">
+          <h2 class="contact-title">All Bookings</h2>
+        </div>                   
+
+    <div class="site-section">
+      <div class="container">
+        <div class="row mb-5">
+          <form class="col-md-12" id="form" method="post" action="">
+            {% csrf_token %}
+            <div class="site-blocks-table">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th class="fname">Customer Name</th>
+                    <th class="product-thumbnail">Artist Image</th>
+                    <th class="artist_name">Artist Name</th>
+                    <th class="event_name">Event Name</th>
+                    <th class="event_date">Event Date</th>
+                    <th class="booking_date">Booking Date</th>
+                    <th class="status">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for i in booking %}                  
+                  <tr>
+
+                    <td class="fname">
+                      <h2 class="h5 text-black">{{i.user.fname}}</h2>
+                    </td>
+
+                    <td class="product-thumbnail">
+                      <img src="{{i.profile.artist_image.url}}" alt="Image" class="img-fluid" style="height: 120px; width: 100px;">
+                    </td>
+
+                    <td class="artist_name">
+                      <h2 class="h5 text-black">{{i.profile.artist_name}}</h2>
+                    </td>
+
+                    <td class="event_name">
+                      <h2 class="h5 text-black">{{i.event_name}}</h2>
+                    </td>
+
+                    <td class="event_date">
+                      <h2 class="h5 text-black">{{i.event_date}}</h2>
+                    </td>
+                       
+                    <td class="booking_date">
+                      <h2 class="h5 text-black">{{i.booking_date}}</h2>
+                    </td>
+
+                    {% if i.status == "pending" %}
+                    <td><center>                      
+                      <a href="{% url 'accept_booking' pk=i.pk %}"><input type="button" value="accept" name="accept"></a>
+                      <a href="{% url 'reject_booking' pk=i.pk %}"><input type="button" value="reject" name="reject"></a>
+                    </center></td>                               
+                    {% else %}
+                      <td><center>
+                      
+                      <input type="button" value="{{i.status}}" disabled>
+                      
+                    </center></td>
+                    {% endif %}
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </form>
+        </div>        
+      </div>
+    </div>                  
+          </form>
+        </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+  <!-- ================ contact section end ================= -->
+
+</body>
+
+</html>
+
+{% endblock %}
